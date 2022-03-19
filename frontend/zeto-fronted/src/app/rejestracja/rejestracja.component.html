@@ -1,0 +1,29 @@
+<div class="form-container mat-elevation-z5">
+    <div class="center margin-top">
+        <h1>Rejestracja</h1>
+    </div>
+    <form [formGroup]="rejestracja">
+        <mat-form-field>
+            <input matInput placeholder="Imie" formControlName="imie">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nazwisko" formControlName="nazwisko">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Login" formControlName="login">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="E-mail" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Hasło" formControlName="haslo" type="password">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Telefon" formControlName="telefon">
+        </mat-form-field>
+        <div class="center margin-top">
+            <button mat-raised-button color="primary" type="submit">Zarejestruj</button>
+        </div>
+    </form>
+</div>
+
