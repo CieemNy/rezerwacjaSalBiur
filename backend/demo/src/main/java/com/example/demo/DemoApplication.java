@@ -18,7 +18,7 @@ public class DemoApplication {
 			Uzytkownik Marian = new Uzytkownik(
 					"DomenEZ","Dominik","Testowy"
 					,"testowy@gmail.com","123456",
-					"997211999"
+					"997211999",1
 			);
 			uzytkownikRepository.save(Marian);
 		};
