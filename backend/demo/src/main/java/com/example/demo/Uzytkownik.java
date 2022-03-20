@@ -13,7 +13,7 @@ public class Uzytkownik {
             name = "idUzytkownik",
             updatable = false
     )
-    private Integer idUzytkownik;
+    private Long idUzytkownik;
 
     @Column(
             name = "login",
@@ -58,7 +58,8 @@ public class Uzytkownik {
     private String nrTelefonu;
 
     @Column(
-            name = "idRola"
+            name = "idRola",
+            nullable = false
     )
     private Integer  idRola;
     public Uzytkownik(String login,
@@ -78,11 +79,11 @@ public class Uzytkownik {
         this.idRola = idRola;
     }
 
-    public Integer getidUzytkownik() {
+    public Long getidUzytkownik() {
         return idUzytkownik;
     }
 
-    public void setidUzytkownik(Integer idUzytkownik) {
+    public void setidUzytkownik(Long idUzytkownik) {
         this.idUzytkownik = idUzytkownik;
     }
 

@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.repository.UzytkownikRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,15 +13,15 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner commandLineRunner(UzytkownikRepository uzytkownikRepository) {
-		return args -> {
-			Uzytkownik Marian = new Uzytkownik(
-					"DomenEZ","Dominik","Testowy"
-					,"testowy@gmail.com","123456",
-					"997211999",1
-			);
-			uzytkownikRepository.save(Marian);
-		};
-	}
+	//@Bean
+	//CommandLineRunner commandLineRunner(UzytkownikRepository uzytkownikRepository) {
+		//return args -> {
+			//Uzytkownik Marian = new Uzytkownik(
+					//"DomenEZ","Dominik","Testowy"
+					//,"testowy@gmail.com","123456",
+					//"997211999",1
+			//);
+			//uzytkownikRepository.save(Marian);
+		//};
+	//}
 }
