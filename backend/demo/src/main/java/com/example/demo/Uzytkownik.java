@@ -6,27 +6,62 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class uzytkownik {
+public class Uzytkownik {
     @Id
     @GeneratedValue
-    @Column(name = "idUzytkownik")
+    @Column(
+            name = "idUzytkownik",
+            updatable = false
+    )
     private Integer idUzytkownik;
-    @Column(name = "login")
-    private String login;
-    @Column(name = "imie")
-    private String imie;
-    @Column(name = "nazwisko")
-    private String nazwisko;
-    @Column(name = "adresEmail")
-    private String adresEmail;
-    @Column(name = "haslo")
-    private String haslo;
-    @Column(name = "nrTelefonu")
-    private String nrTelefonu;
-    @Column(name = "idRola")
-    private Integer  idRola;
 
-    public uzytkownik(Integer idUzytkownik,
+    @Column(
+            name = "login",
+            nullable = false,
+            unique = true
+    )
+    private String login;
+
+    @Column(
+            name = "imie",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String imie;
+
+    @Column(
+            name = "nazwisko",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String nazwisko;
+
+    @Column(
+            name = "adresEmail",
+            nullable = false,
+            columnDefinition = "TEXT",
+            unique = true
+    )
+    private String adresEmail;
+
+    @Column(
+            name = "haslo",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String haslo;
+
+    @Column(
+            name = "nrTelefonu",
+            nullable = false
+    )
+    private String nrTelefonu;
+
+    @Column(
+            name = "idRola"
+    )
+    private Integer  idRola;
+    public Uzytkownik(Integer idUzytkownik,
                       String login,
                       String imie,
                       String nazwisko,
@@ -91,7 +126,6 @@ public class uzytkownik {
     public void setHaslo(String haslo) {
         this.haslo = haslo;
     }
-
     public String getNrTelefonu() {
         return nrTelefonu;
     }
@@ -110,7 +144,7 @@ public class uzytkownik {
 
     @Override
     public String toString() {
-        return "uzytkownik{" +
+        return "Uzytkownik{" +
                 "idUzytkownik=" + idUzytkownik +
                 ", login='" + login + '\'' +
                 ", imie='" + imie + '\'' +
