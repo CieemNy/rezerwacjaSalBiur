@@ -1,138 +1,104 @@
-package com.example.demo;
+package com.projektZETO.signup.uzytkownik;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
 @Entity
-public class Uzytkownik implements UzytkownikDetails {
+
+public class Uzytkownik implements UserDetails{
+
     @Id
-    @GeneratedValue
-    @Column(
-            name = "idUzytkownik",
-            updatable = false
+    @SequenceGenerator(
+            name = "uzytkownik_sequence",
+            sequenceName = "uzytkownik_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
     )
     private Long idUzytkownik;
-
-    @Column(
-            name = "imie",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
     private String imie;
-
-    @Column(
-            name = "nazwisko",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
     private String nazwisko;
-
-    @Column(
-            name = "adresEmail",
-            nullable = false,
-            columnDefinition = "TEXT",
-            unique = true
-    )
+    private String nazwaUzytkownika;
     private String adresEmail;
-
-    @Column(
-            name = "haslo",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
     private String haslo;
-
-    @Column(
-            name = "nrTelefonu",
-            nullable = false
-    )
     private String nrTelefonu;
+    private Integer idRola;
+    @Enumerated(EnumType.STRING)
+    private UzytkownikRola uzytkownikRola;
+    private Boolean locked;
+    private Boolean enabled;
 
-    @Column(
-            name = "idRola",
-            nullable = false
-    )
-    private Integer  idRola;
     public Uzytkownik(String imie,
                       String nazwisko,
+                      String nazwaUzytkownika,
                       String adresEmail,
                       String haslo,
                       String nrTelefonu,
-                      Integer idRola)
+                      Integer idRola,
+                      UzytkownikRola uzytkownikRola,
+                      Boolean locked,
+                      Boolean enabled)
     {
         this.imie = imie;
         this.nazwisko = nazwisko;
+        this.nazwaUzytkownika = nazwaUzytkownika;
         this.adresEmail = adresEmail;
         this.haslo = haslo;
         this.nrTelefonu = nrTelefonu;
         this.idRola = idRola;
-    }
-
-    public Long getidUzytkownik() {
-        return idUzytkownik;
-    }
-    public void setidUzytkownik(Long idUzytkownik) {
-        this.idUzytkownik = idUzytkownik;
-    }
-
-    public String getImie() {
-        return imie;
-    }
-    public void setImie(String imie) {
-        this.imie = imie;
-    }
-
-    public String getNazwisko() {
-        return nazwisko;
-    }
-
-    public void setNazwisko(String nazwisko) {
-        this.nazwisko = nazwisko;
-    }
-
-    public String getAdresEmail() {
-        return adresEmail;
-    }
-
-    public void setAdresEmail(String adresEmail) {
-        this.adresEmail = adresEmail;
-    }
-
-    public String getHaslo() {
-        return haslo;
-    }
-
-    public void setHaslo(String haslo) {
-        this.haslo = haslo;
-    }
-    public String getNrTelefonu() {
-        return nrTelefonu;
-    }
-
-    public void setNrTelefonu(String nrTelefonu) {
-        this.nrTelefonu = nrTelefonu;
-    }
-
-    public Integer getIdRola() {
-        return idRola;
-    }
-
-    public void setIdRola(Integer idRola) {
-        this.idRola = idRola;
+        this.uzytkownikRola = uzytkownikRola;
+        this.locked = locked;
+        this.enabled = enabled;
     }
 
     @Override
-    public String toString() {
-        return "Uzytkownik{" +
-                "idUzytkownik=" + idUzytkownik +
-                ", imie='" + imie + '\'' +
-                ", nazwisko='" + nazwisko + '\'' +
-                ", adresEmail='" + adresEmail + '\'' +
-                ", haslo='" + haslo + '\'' +
-                ", nrTelefonu='" + nrTelefonu + '\'' +
-                ", idRola=" + idRola +
-                '}';
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority =
+                new SimpleGrantedAuthority(uzytkownikRola.name());
+        return Collections.singletonList(authority);
+    }
+
+    @Override
+    public String getPassword() {
+        return haslo;
+    }
+    @Override
+    public String getUsername(){
+        return nazwaUzytkownika;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 }
