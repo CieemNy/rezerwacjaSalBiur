@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.Uzytkownik;
-import com.example.demo.repository.UzytkownikRepository;
-import com.example.demo.service.IUzytkownikService;
 import com.example.demo.service.UzytkownikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

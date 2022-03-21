@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Uzytkownik {
+public class Uzytkownik implements UzytkownikDetails {
     @Id
     @GeneratedValue
     @Column(
@@ -14,13 +14,6 @@ public class Uzytkownik {
             updatable = false
     )
     private Long idUzytkownik;
-
-    @Column(
-            name = "login",
-            nullable = false,
-            unique = true
-    )
-    private String login;
 
     @Column(
             name = "imie",
@@ -62,15 +55,13 @@ public class Uzytkownik {
             nullable = false
     )
     private Integer  idRola;
-    public Uzytkownik(String login,
-                      String imie,
+    public Uzytkownik(String imie,
                       String nazwisko,
                       String adresEmail,
                       String haslo,
                       String nrTelefonu,
                       Integer idRola)
     {
-        this.login = login;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.adresEmail = adresEmail;
@@ -82,17 +73,8 @@ public class Uzytkownik {
     public Long getidUzytkownik() {
         return idUzytkownik;
     }
-
     public void setidUzytkownik(Long idUzytkownik) {
         this.idUzytkownik = idUzytkownik;
-    }
-
-    public String   getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getImie() {
@@ -145,7 +127,6 @@ public class Uzytkownik {
     public String toString() {
         return "Uzytkownik{" +
                 "idUzytkownik=" + idUzytkownik +
-                ", login='" + login + '\'' +
                 ", imie='" + imie + '\'' +
                 ", nazwisko='" + nazwisko + '\'' +
                 ", adresEmail='" + adresEmail + '\'' +
