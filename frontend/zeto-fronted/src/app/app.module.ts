@@ -11,13 +11,17 @@ import { LogowanieComponent } from './logowanie/logowanie.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RejestracjaComponent } from './rejestracja/rejestracja.component';
+import { KontaktComponent } from './kontakt/kontakt.component';
+import { RegulaminComponent } from './regulamin/regulamin.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LogowanieComponent,
-    RejestracjaComponent
+    RejestracjaComponent,
+    KontaktComponent,
+    RegulaminComponent
   ],
   imports: [
     BrowserModule,
