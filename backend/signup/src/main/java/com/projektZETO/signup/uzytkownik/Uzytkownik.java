@@ -17,7 +17,6 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-
 public class Uzytkownik implements UserDetails{
 
     @Id
@@ -34,10 +33,9 @@ public class Uzytkownik implements UserDetails{
     private String imie;
     private String nazwisko;
     private String nazwaUzytkownika;
-    private String adresEmail;
+    private String email;
     private String haslo;
     private String nrTelefonu;
-    private Integer idRola;
     @Enumerated(EnumType.STRING)
     private UzytkownikRola uzytkownikRola;
     private Boolean locked;
@@ -46,10 +44,9 @@ public class Uzytkownik implements UserDetails{
     public Uzytkownik(String imie,
                       String nazwisko,
                       String nazwaUzytkownika,
-                      String adresEmail,
+                      String email,
                       String haslo,
                       String nrTelefonu,
-                      Integer idRola,
                       UzytkownikRola uzytkownikRola,
                       Boolean locked,
                       Boolean enabled)
@@ -57,10 +54,9 @@ public class Uzytkownik implements UserDetails{
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.nazwaUzytkownika = nazwaUzytkownika;
-        this.adresEmail = adresEmail;
+        this.email = email;
         this.haslo = haslo;
         this.nrTelefonu = nrTelefonu;
-        this.idRola = idRola;
         this.uzytkownikRola = uzytkownikRola;
         this.locked = locked;
         this.enabled = enabled;
