@@ -1,4 +1,4 @@
-package com.projektZETO.signup.zabezpieczenia.config;
+package com.projektZETO.signup.zabezpieczenia;
 
 
 import org.springframework.context.annotation.Bean;

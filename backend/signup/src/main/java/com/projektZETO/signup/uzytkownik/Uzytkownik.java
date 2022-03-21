@@ -32,7 +32,6 @@ public class Uzytkownik implements UserDetails{
     private Long idUzytkownik;
     private String imie;
     private String nazwisko;
-    private String nazwaUzytkownika;
     private String email;
     private String haslo;
     private String nrTelefonu;
@@ -43,23 +42,17 @@ public class Uzytkownik implements UserDetails{
 
     public Uzytkownik(String imie,
                       String nazwisko,
-                      String nazwaUzytkownika,
                       String email,
                       String haslo,
                       String nrTelefonu,
-                      UzytkownikRola uzytkownikRola,
-                      Boolean locked,
-                      Boolean enabled)
+                      UzytkownikRola uzytkownikRola)
     {
         this.imie = imie;
         this.nazwisko = nazwisko;
-        this.nazwaUzytkownika = nazwaUzytkownika;
         this.email = email;
         this.haslo = haslo;
         this.nrTelefonu = nrTelefonu;
         this.uzytkownikRola = uzytkownikRola;
-        this.locked = locked;
-        this.enabled = enabled;
     }
 
     @Override
@@ -69,13 +62,25 @@ public class Uzytkownik implements UserDetails{
         return Collections.singletonList(authority);
     }
 
+    public String getImie() {
+        return imie;
+    }
+
+    public String getNazwisko() {
+        return nazwisko;
+    }
+
+    public String getNrTelefonu() {
+        return nrTelefonu;
+    }
+
+    @Override
+    public String getUsername(){
+        return email;
+    }
     @Override
     public String getPassword() {
         return haslo;
-    }
-    @Override
-    public String getUsername(){
-        return nazwaUzytkownika;
     }
 
     @Override
