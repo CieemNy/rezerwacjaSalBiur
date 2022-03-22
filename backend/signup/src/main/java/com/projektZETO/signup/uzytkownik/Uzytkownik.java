@@ -27,7 +27,7 @@ public class Uzytkownik implements UserDetails{
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "uzytkownik_sequence"
     )
     private Long idUzytkownik;
     private String imie;
@@ -37,8 +37,8 @@ public class Uzytkownik implements UserDetails{
     private String nrTelefonu;
     @Enumerated(EnumType.STRING)
     private UzytkownikRola uzytkownikRola;
-    private Boolean locked;
-    private Boolean enabled;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
     public Uzytkownik(String imie,
                       String nazwisko,

@@ -16,6 +16,7 @@ public class TokenPotwierdzeniaService {
     public void zapiszTokenPotwierdzenia(TokenPotwierdzenia token){
         tokenPotwierdzeniaRepository.save(token);
     }
+
     public  Optional<TokenPotwierdzenia> getToken(String token) { return tokenPotwierdzeniaRepository.findByToken(token);
     }
 
