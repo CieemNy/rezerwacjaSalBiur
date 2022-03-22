@@ -55,4 +55,8 @@ public class UzytkownikService implements UserDetailsService {
 
         return token;
     }
+
+    public int enableUzytkownik(String email){
+        return uzytkownikRepository.enableUzytkownik(email);
+    }
 }

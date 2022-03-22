@@ -1,10 +1,7 @@
 package com.projektZETO.signup.rejestracja;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "api/v1/rejestracja")
@@ -17,6 +14,10 @@ public class RejestracjaController {
     public String rejestracja(@RequestBody RejestracjaRequest request)
     {
         return rejestracjaService.rejestracja(request);
+    }
+    @GetMapping(path = "confirm")
+    public String confirm(@RequestParam("token") String token){
+        return rejestracjaService.tokenPotwierdzenia(token);
     }
 
 }
