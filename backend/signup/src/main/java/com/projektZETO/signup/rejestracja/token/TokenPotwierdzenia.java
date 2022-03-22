@@ -23,7 +23,7 @@ public class TokenPotwierdzenia {
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "token_potwierdzenia_sequence"
     )
 
     private Long id;
