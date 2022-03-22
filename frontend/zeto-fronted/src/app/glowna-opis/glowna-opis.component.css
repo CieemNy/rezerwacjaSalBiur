@@ -1,0 +1,10 @@
+.container{
+    width: 100%;
+    height: 50%;
+    margin: 0;
+    padding: 0;
+}
+p{
+    font-size: larger;
+    width: 100%;
+}

@@ -1,7 +1,17 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 mat-toolbar{
     justify-content: center;
 }
 
 .content{
     padding: 50px;
+}
+.galeria{
+    width: 100%;
+}
+.galeria-left{
+    width: 70%;
+}
+.galeria-right{
+    width: 30%;
 }

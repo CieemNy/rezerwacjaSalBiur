@@ -9,5 +9,15 @@
   </div>
 </mat-toolbar>
 <div class="content">
+  <app-glowna-opis></app-glowna-opis>
+  <div class="galeria">
+      <div class="galeria-left">
+        <app-carousel [images]="images" [autoSlide]="true" [controls]="false"></app-carousel>
+      </div>
+      <div class="galeria-right">
+
+      </div>
+  </div>
   <router-outlet></router-outlet>
 </div>
+<app-stopka></app-stopka>
