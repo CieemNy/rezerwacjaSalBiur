@@ -5,14 +5,14 @@
     box-shadow: 0 8px 16px #dce1e1;
 }
 .galeria-left{
-    width: 70%;
+    width: 50%;
     margin: 0;
     padding: 0;
     height:100%;
     float: left;
 }
 .galeria-right{
-    width: 30%;
+    width: 50%;
     margin: 0;
     padding: 0;
     height: 100%;
