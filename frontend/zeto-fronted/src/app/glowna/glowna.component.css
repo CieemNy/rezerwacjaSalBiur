@@ -1,0 +1,28 @@
+.galeria{
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px #dce1e1;
+}
+.galeria-left{
+    width: 70%;
+    margin: 0;
+    padding: 0;
+    height:100%;
+    float: left;
+}
+.galeria-right{
+    width: 30%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    float: left;
+}
+.oferta{
+    position: relative;
+    bottom: 50%;
+    top: 50%;
+    text-align: center;
+    justify-content: center;
+    font-size: 30px;
+}

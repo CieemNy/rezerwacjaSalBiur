@@ -16,6 +16,7 @@ import { RegulaminComponent } from './regulamin/regulamin.component';
 import { StopkaComponent } from './stopka/stopka.component';
 import { GlownaOpisComponent } from './glowna-opis/glowna-opis.component';
 import { CarouselModule } from './carousel/carousel.module';
+import { GlownaComponent } from './glowna/glowna.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { CarouselModule } from './carousel/carousel.module';
     RegulaminComponent,
     StopkaComponent,
     GlownaOpisComponent,
+    GlownaComponent,
   ],
   imports: [
     BrowserModule,
