@@ -4,7 +4,7 @@
 ### REZERWACJA SAL I BIUR W RAMACH PROJEKTU ZESPOŁOWEGO
 
 # PODZIAŁ:
-## FRONTED:
+## FRONTEND:
 ### Damian Banach
 ### Mateusz Jagiełło
 ## BACKEND:
