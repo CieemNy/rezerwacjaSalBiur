@@ -18,4 +18,7 @@ export class LogowanieComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  loginUser(){
+    
+  }
 }

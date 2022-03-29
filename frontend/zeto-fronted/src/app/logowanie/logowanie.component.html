@@ -2,7 +2,7 @@
     <div class="center margin-top">
         <h1>Logowanie</h1>
     </div>
-    <form [formGroup]="logowanie">
+    <form [formGroup]="logowanie" #loginForm="ngForm" (ngSubmit)="loginUser()">
         <mat-form-field>
             <input matInput placeholder="E-mail" formControlName="email">
         </mat-form-field>

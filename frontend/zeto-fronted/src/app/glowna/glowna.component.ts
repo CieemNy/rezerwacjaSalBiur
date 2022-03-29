@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-glowna',
+  templateUrl: './glowna.component.html',
+  styleUrls: ['./glowna.component.css']
 })
-export class AppComponent {
-  title = 'zeto-fronted';
+export class GlownaComponent implements OnInit {
 
+  constructor() { }
 
+  ngOnInit(): void {
+  }
   images =[
     {
       imageSrc:
@@ -34,6 +36,12 @@ export class AppComponent {
       imageSrc:
       'https://szczechy.pl/wp-content/uploads/2019/11/Sala-V4-1.jpg',
       imageAlt: 'sala5',
-    }
+    },
+    {
+      imageSrc:
+      'https://www.prawo.pl/gfx/prawopl/_thumbs/pl/wkdokumenty/000/422/728/1/biuro-00025-thinkstockphotos,nICD62SaolTLo7bXW5mZ.jpg',
+      imageAlt: 'sala3',
+    },
   ]
+
 }

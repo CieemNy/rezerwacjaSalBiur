@@ -13,6 +13,10 @@ import { MatInputModule } from '@angular/material/input';
 import { RejestracjaComponent } from './rejestracja/rejestracja.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { RegulaminComponent } from './regulamin/regulamin.component';
+import { StopkaComponent } from './stopka/stopka.component';
+import { GlownaOpisComponent } from './glowna-opis/glowna-opis.component';
+import { CarouselModule } from './carousel/carousel.module';
+import { GlownaComponent } from './glowna/glowna.component';
 
 
 @NgModule({
@@ -21,7 +25,10 @@ import { RegulaminComponent } from './regulamin/regulamin.component';
     LogowanieComponent,
     RejestracjaComponent,
     KontaktComponent,
-    RegulaminComponent
+    RegulaminComponent,
+    StopkaComponent,
+    GlownaOpisComponent,
+    GlownaComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +40,8 @@ import { RegulaminComponent } from './regulamin/regulamin.component';
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
