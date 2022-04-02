@@ -5,13 +5,12 @@ server:
 
 spring:
   datasource:
-    password: BialasSQL2115
-    url: jdbc:mysql://mkwk107.cba.pl/domaba69
-    username: domabaSQL
+    password:
+    url: jdbc:mysql://localhost:3306/rezerwacja
+    username: root
   jpa:
     hibernate:
-      ddl-auto: create-drop
-#      zmienić na update
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect

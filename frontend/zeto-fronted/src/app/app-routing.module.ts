@@ -8,7 +8,7 @@ import { RejestracjaComponent } from './rejestracja/rejestracja.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'glowna',
     component: GlownaComponent
   },
   {

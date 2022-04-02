@@ -17,6 +17,7 @@ import { StopkaComponent } from './stopka/stopka.component';
 import { GlownaOpisComponent } from './glowna-opis/glowna-opis.component';
 import { CarouselModule } from './carousel/carousel.module';
 import { GlownaComponent } from './glowna/glowna.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { GlownaComponent } from './glowna/glowna.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    CarouselModule
+    CarouselModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

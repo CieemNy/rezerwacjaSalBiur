@@ -67,6 +67,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "zeto-fronted:build",
+            "proxyConfig": "src/proxy.config.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "zeto-fronted:build:production"
@@ -81,7 +85,7 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "zeto-fronted:build"
-          }
+            }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",

@@ -2,24 +2,25 @@
     <div class="center margin-top">
         <h1>Rejestracja</h1>
     </div>
-    <form [formGroup]="rejestracja">
+    {{ uzytkownik | json}}
+    <form [formGroup]="rejestracja" (ngSubmit)="formSubmit()">
         <mat-form-field>
-            <input matInput placeholder="Imie" formControlName="imie">
+            <input matInput placeholder="Login" formControlName="login" [(ngModel)]="uzytkownik.login" name="login">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Nazwisko" formControlName="nazwisko">
+            <input matInput placeholder="Imie" formControlName="imie" [(ngModel)]="uzytkownik.imie" name="imie">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Login" formControlName="login">
+            <input matInput placeholder="Nazwisko" formControlName="nazwisko" [(ngModel)]="uzytkownik.nazwisko" name="nazwisko">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="E-mail" formControlName="email">
+            <input matInput placeholder="E-mail" formControlName="email" [(ngModel)]="uzytkownik.email" name="email">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Hasło" formControlName="haslo" type="password">
+            <input matInput placeholder="Hasło" formControlName="haslo" type="password" [(ngModel)]="uzytkownik.haslo" name="haslo">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Telefon" formControlName="telefon">
+            <input matInput placeholder="Telefon" formControlName="telefon" [(ngModel)]="uzytkownik.telefon" name="telefon">
         </mat-form-field>
         <div class="center margin-top">
             <button mat-raised-button color="primary" type="submit">Zarejestruj</button>
