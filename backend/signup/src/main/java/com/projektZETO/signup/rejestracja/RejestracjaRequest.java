@@ -13,7 +13,7 @@ import lombok.ToString;
 public class RejestracjaRequest {
     private final String imie;
     private final String nazwisko;
-    private final String adresEmail;
+    private final String email;
     private final String nrTelefonu;
     private final String haslo;
 }

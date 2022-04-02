@@ -1,6 +1,5 @@
 package com.projektZETO.signup.uzytkownik;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,20 +13,13 @@ import java.util.Collections;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
 public class Uzytkownik implements UserDetails{
 
     @Id
-    @SequenceGenerator(
-            name = "uzytkownik_sequence",
-            sequenceName = "uzytkownik_sequence",
-            allocationSize = 1
-    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "uzytkownik_sequence"
+            strategy = GenerationType.AUTO
     )
     private Long idUzytkownik;
     private String imie;
@@ -60,18 +52,6 @@ public class Uzytkownik implements UserDetails{
         SimpleGrantedAuthority authority =
                 new SimpleGrantedAuthority(uzytkownikRola.name());
         return Collections.singletonList(authority);
-    }
-
-    public String getImie() {
-        return imie;
-    }
-
-    public String getNazwisko() {
-        return nazwisko;
-    }
-
-    public String getNrTelefonu() {
-        return nrTelefonu;
     }
 
     @Override

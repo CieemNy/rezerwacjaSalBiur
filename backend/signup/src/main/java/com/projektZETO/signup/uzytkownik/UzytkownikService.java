@@ -10,7 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -57,14 +56,8 @@ public class UzytkownikService implements UserDetailsService {
         return token;
     }
 
-    public int enableUzytkownik(String email)
-    {
+    public int enableUzytkownik(String email){
         return uzytkownikRepository.enableUzytkownik(email);
-    }
-
-    public List<Uzytkownik> listAll()
-    {
-        return (List<Uzytkownik>) uzytkownikRepository.findAll();
     }
 
     public void save(Uzytkownik uzytkownik)
@@ -72,3 +65,4 @@ public class UzytkownikService implements UserDetailsService {
         uzytkownikRepository.save(uzytkownik);
     }
 }
+

@@ -21,7 +21,7 @@ public class RejestracjaService {
     public String rejestracja(RejestracjaRequest request) {
 
         boolean isValidEmail = emailValidator.
-                test(request.getAdresEmail());
+                test(request.getEmail());
         if(!isValidEmail)
         {
             throw new IllegalStateException("email nieprawidlowy");
@@ -30,7 +30,7 @@ public class RejestracjaService {
                 new Uzytkownik(
                         request.getImie(),
                         request.getNazwisko(),
-                        request.getAdresEmail(),
+                        request.getEmail(),
                         request.getHaslo(),
                         request.getNrTelefonu(),
                         UzytkownikRola.KLIENT
