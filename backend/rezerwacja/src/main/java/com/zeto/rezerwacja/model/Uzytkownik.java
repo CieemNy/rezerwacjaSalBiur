@@ -1,19 +1,30 @@
 package com.zeto.rezerwacja.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "uzytkownicy")
-public class Uzytkownik {
+public class Uzytkownik implements UserDetails
+{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String login;
+    @SequenceGenerator(
+            name = "uzytkownik_sequence",
+            sequenceName = "uzytkownik_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "uzytkownik_sequence"
+    )
+    private Long idUzytkownik;
     private String imie;
     private String nazwisko;
     private String email;
@@ -39,9 +50,8 @@ public class Uzytkownik {
         UzytkownikRole = uzytkownikRole;
     }
 
-    public Uzytkownik(Long id, String login, String imie, String nazwisko, String email, String haslo, String telefon) {
-        this.id = id;
-        this.login = login;
+    public Uzytkownik(Long idUzytkownik, String imie, String nazwisko, String email, String haslo, String telefon) {
+        this.idUzytkownik = idUzytkownik;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.email = email;
@@ -49,20 +59,12 @@ public class Uzytkownik {
         this.telefon = telefon;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdUzytkownik() {
+        return idUzytkownik;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
+    public void setIdUzytkownik(Long idUzytkownik) {
+        this.idUzytkownik = idUzytkownik;
     }
 
     public String getImie() {
@@ -104,4 +106,49 @@ public class Uzytkownik {
     public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        Set<Authority> set = new HashSet<>();
+
+        this.UzytkownikRole.forEach(uzytkownikRola -> {
+            set.add(new Authority(uzytkownikRola.getRola().getRolaNazwa()));
+        });
+
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
 }
+

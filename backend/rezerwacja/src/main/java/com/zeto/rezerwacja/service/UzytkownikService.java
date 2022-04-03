@@ -11,11 +11,11 @@ public interface UzytkownikService {
 
     public Uzytkownik stworzUzytkownik(Uzytkownik uzytkownik, Set<UzytkownikRola> UzytkownikRole) throws Exception;
 
-    //znajdz uzytkownika po loginie
+    //znajdz uzytkownika po emailu
 
-    public Uzytkownik getUzytkownik(String login);
+    public Uzytkownik getUzytkownik(String email);
 
     //usun uzytkownika po id
 
-    public void usunUzytkownik(Long id);
+    public void usunUzytkownik(Long idUzytkownik);
 }

@@ -3,8 +3,10 @@ package com.zeto.rezerwacja.controller;
 import com.zeto.rezerwacja.model.Rola;
 import com.zeto.rezerwacja.model.Uzytkownik;
 import com.zeto.rezerwacja.model.UzytkownikRola;
+import com.zeto.rezerwacja.repo.UzytkownikRepository;
 import com.zeto.rezerwacja.service.UzytkownikService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -25,8 +27,8 @@ public class UzytkownikController {
         Set<UzytkownikRola> role = new HashSet<>();
 
         Rola rola = new Rola();
-        rola.setRolaId(45L);
-        rola.setRolaNazwa("Normal");
+        rola.setRolaId(1L);
+        rola.setRolaNazwa("USER");
 
         UzytkownikRola uzytkownikRola = new UzytkownikRola();
         uzytkownikRola.setUzytkownik(uzytkownik);
@@ -35,20 +37,19 @@ public class UzytkownikController {
         role.add(uzytkownikRola);
         return this.uzytkownikService.stworzUzytkownik(uzytkownik, role);
     }
-    //znajdz uzytkownika po loginie
+    //znajdz uzytkownika po emailu
 
-    @GetMapping("/{login}")
-    public Uzytkownik getUzytkownik(@PathVariable("login") String login){
-        return this.uzytkownikService.getUzytkownik(login);
+    @GetMapping("/{email}")
+    public Uzytkownik getUzytkownik(@PathVariable("email") String email){
+        return this.uzytkownikService.getUzytkownik(email);
     }
 
     //usun uzytkownika po id
-    @DeleteMapping("/{id}")
-    public void usunUzytkownik(@PathVariable("id") Long id){
-        this.uzytkownikService.usunUzytkownik(id);
+    @DeleteMapping("/{idUzytkownik}")
+    public void usunUzytkownik(@PathVariable("idUzytkownik") Long idUzytkownik){
+        this.uzytkownikService.usunUzytkownik(idUzytkownik);
     }
 
     //update api
-
 
 }

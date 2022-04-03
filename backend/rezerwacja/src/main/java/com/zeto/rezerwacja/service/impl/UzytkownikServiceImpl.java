@@ -6,12 +6,14 @@ import com.zeto.rezerwacja.repo.RolaRepository;
 import com.zeto.rezerwacja.repo.UzytkownikRepository;
 import com.zeto.rezerwacja.service.UzytkownikService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
 public class UzytkownikServiceImpl implements UzytkownikService {
+
 
     @Autowired
     private UzytkownikRepository uzytkownikRepository;
@@ -23,10 +25,10 @@ public class UzytkownikServiceImpl implements UzytkownikService {
     @Override
     public Uzytkownik stworzUzytkownik(Uzytkownik uzytkownik, Set<UzytkownikRola> UzytkownikRole) throws Exception {
 
-        Uzytkownik local = this.uzytkownikRepository.findByLogin(uzytkownik.getLogin());
+        Uzytkownik local = this.uzytkownikRepository.findByEmail(uzytkownik.getEmail());
         if(local!=null){
-            System.out.println("Użytkownik o takiej nazwie istnieje!");
-            throw new Exception("Użytkownik jest w bazie!");
+            System.out.println("Użytkownik o takim emailu istnieje!");
+            throw new Exception("Email jest w bazie!");
         }else
             //stworz uzytkownika
             for(UzytkownikRola ur:UzytkownikRole){
@@ -39,14 +41,14 @@ public class UzytkownikServiceImpl implements UzytkownikService {
         return local;
     }
 
-    //znajdz uzytkownika po loginie
+    //znajdz uzytkownika po emailu
     @Override
-    public Uzytkownik getUzytkownik(String login) {
-        return this.uzytkownikRepository.findByLogin(login);
+    public Uzytkownik getUzytkownik(String email) {
+        return this.uzytkownikRepository.findByEmail(email);
     }
 
     @Override
-    public void usunUzytkownik(Long id) {
-        this.uzytkownikRepository.deleteById(id);
+    public void usunUzytkownik(Long idUzytkownik) {
+        this.uzytkownikRepository.deleteById(idUzytkownik);
     }
 }

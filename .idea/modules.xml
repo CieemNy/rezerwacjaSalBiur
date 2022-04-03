@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/backend/demo/demo.iml" filepath="$PROJECT_DIR$/backend/demo/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/projektZETO.iml" filepath="$PROJECT_DIR$/.idea/projektZETO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/rezerwacja/rezerwacja.iml" filepath="$PROJECT_DIR$/backend/rezerwacja/rezerwacja.iml" />
       <module fileurl="file://$PROJECT_DIR$/backend/signup/signup.iml" filepath="$PROJECT_DIR$/backend/signup/signup.iml" />
     </modules>
   </component>

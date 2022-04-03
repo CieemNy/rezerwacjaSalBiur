@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @SpringBootApplication
 public class RezerwacjaApplication implements CommandLineRunner {
 	@Autowired
@@ -28,24 +29,26 @@ public class RezerwacjaApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("starting code");
 
-
-//
 //		Uzytkownik uzytkownik = new Uzytkownik();
-//		uzytkownik.setImie("Damian");
-//		uzytkownik.setNazwisko("Banach");
-//		uzytkownik.setLogin("ciemny");
-//		uzytkownik.setHaslo("abc");
-//		uzytkownik.setEmail("damian@gmail.com");
+//		uzytkownik.setImie("jasiek2");
+//		uzytkownik.setNazwisko("jasiek2");
+//		uzytkownik.setHaslo("test");
+//		uzytkownik.setEmail("test5@gmail.com");
+//		uzytkownik.setTelefon("123123");
 //
-//		Rola rola=new Rola();
-//		rola.setRolaId(44L);
-//		rola.setRolaNazwa("Admin");
-//		Set<UzytkownikRola> uzytkownikRolaSet=new HashSet<>();
-//		UzytkownikRola uzytkownikRola = new UzytkownikRola();
-//		uzytkownikRola.setRola(rola);
+//		Rola rola1 = new Rola();
+//		rola1.setRolaId(1L);
+//		rola1.setRolaNazwa("USER");
+//
+//		Set<UzytkownikRola> uzytkownikRolaSet= new HashSet<>();
+//		UzytkownikRola uzytkownikRola= new UzytkownikRola();
+//		uzytkownikRola.setRola(rola1);
 //		uzytkownikRola.setUzytkownik(uzytkownik);
+//
 //		uzytkownikRolaSet.add(uzytkownikRola);
-//		Uzytkownik uzytkownik1 = this.uzytkownikService.stworzUzytkownik(uzytkownik, uzytkownikRolaSet);
-//		System.out.println(uzytkownik1.getLogin());
+//
+//		Uzytkownik uzytkownik1 =this.uzytkownikService.stworzUzytkownik(uzytkownik, uzytkownikRolaSet);
+//		System.out.println(uzytkownik1.getEmail());
+
 	}
 }
