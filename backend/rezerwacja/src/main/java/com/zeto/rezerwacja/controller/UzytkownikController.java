@@ -35,7 +35,6 @@ public class UzytkownikController {
         rola.setRolaNazwa("USER");
 
         UzytkownikRola uzytkownikRola = new UzytkownikRola();
-        uzytkownikRola.setUzytkownik(uzytkownik);
         uzytkownikRola.setRola(rola);
 
         role.add(uzytkownikRola);
