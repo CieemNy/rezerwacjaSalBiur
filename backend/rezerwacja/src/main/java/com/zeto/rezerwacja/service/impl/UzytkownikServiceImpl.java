@@ -6,9 +6,10 @@ import com.zeto.rezerwacja.repo.RolaRepository;
 import com.zeto.rezerwacja.repo.UzytkownikRepository;
 import com.zeto.rezerwacja.service.UzytkownikService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -45,6 +46,11 @@ public class UzytkownikServiceImpl implements UzytkownikService {
     @Override
     public Uzytkownik getUzytkownik(String email) {
         return this.uzytkownikRepository.findByEmail(email);
+    }
+
+    @Override
+    public Optional<Uzytkownik> findUzytkownik(Long idUzytkownik) {
+        return this.uzytkownikRepository.findById(idUzytkownik);
     }
 
     @Override

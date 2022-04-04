@@ -15,14 +15,8 @@ public class Uzytkownik implements UserDetails
 {
 
     @Id
-    @SequenceGenerator(
-            name = "uzytkownik_sequence",
-            sequenceName = "uzytkownik_sequence",
-            allocationSize = 1
-    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "uzytkownik_sequence"
+            strategy = GenerationType.IDENTITY
     )
     private Long idUzytkownik;
     private String imie;
@@ -121,12 +115,12 @@ public class Uzytkownik implements UserDetails
 
     @Override
     public String getPassword() {
-        return null;
+        return haslo;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return email;
     }
 
 
@@ -147,7 +141,7 @@ public class Uzytkownik implements UserDetails
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
 }

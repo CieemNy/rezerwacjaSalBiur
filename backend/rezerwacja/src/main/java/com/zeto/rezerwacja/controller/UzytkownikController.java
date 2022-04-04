@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
-import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -25,7 +25,7 @@ public class UzytkownikController {
     private UzytkownikRepository uzytkownikRepository;
 
     //tworzenie uzytkownika
-    @PostMapping("/")
+    @PostMapping("/add")
     public Uzytkownik stworzUzytkownik(@RequestBody Uzytkownik uzytkownik) throws Exception {
 
         Set<UzytkownikRola> role = new HashSet<>();
@@ -47,8 +47,12 @@ public class UzytkownikController {
     public Uzytkownik getUzytkownik(@PathVariable("email") String email){
         return this.uzytkownikService.getUzytkownik(email);
     }
+    //znajdz uzytkownika po id
 
-
+    @GetMapping("/findid/{idUzytkownik}")
+    public Optional<Uzytkownik> findUzytkownik(@PathVariable("idUzytkownik") Long idUzytkownik){
+        return this.uzytkownikService.findUzytkownik(idUzytkownik);
+    }
 
     //usun uzytkownika po id
     @DeleteMapping("/delete/{idUzytkownik}")
@@ -57,14 +61,31 @@ public class UzytkownikController {
     }
 
     //update api
-    @PutMapping("/edit/{id}")
-    public ResponseEntity<Uzytkownik> updateUzytkownik(@PathVariable long idUzytkownik, @RequestBody Uzytkownik uzytkownik) {
-        Uzytkownik updateUzytkownik = uzytkownikRepository.findById(idUzytkownik)
-                .orElseThrow(() -> new ResourceNotFoundException("Uzytkownik o podanym id nie istnieje! Id: " + idUzytkownik));
+    @PostMapping("/edit/{id}")
+    public ResponseEntity<Uzytkownik> updateUzytkownik(@PathVariable long id, @RequestBody Uzytkownik uzytkownik) {
+        Uzytkownik updateUzytkownik = uzytkownikRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Uzytkownik o podanym id nie istnieje! Id: " + id));
 
-        updateUzytkownik.setImie(uzytkownik.getImie());
-        updateUzytkownik.setNazwisko(uzytkownik.getNazwisko());
-        updateUzytkownik.setEmail(uzytkownik.getEmail());
+        if (uzytkownik.getImie() != null )
+        {
+            updateUzytkownik.setImie(uzytkownik.getImie());
+        }
+        if (uzytkownik.getNazwisko() != null )
+        {
+            updateUzytkownik.setNazwisko(uzytkownik.getNazwisko());
+        }
+        if (uzytkownik.getEmail() != null )
+        {
+            updateUzytkownik.setEmail(uzytkownik.getEmail());
+        }
+        if (uzytkownik.getHaslo() != null )
+        {
+            updateUzytkownik.setHaslo(uzytkownik.getHaslo());
+        }
+        if (uzytkownik.getTelefon() != null )
+        {
+            updateUzytkownik.setTelefon(uzytkownik.getTelefon());
+        }
 
         uzytkownikRepository.save(updateUzytkownik);
 
