@@ -2,11 +2,7 @@
     <div class="center margin-top">
         <h1>Rejestracja</h1>
     </div>
-    {{ uzytkownik | json}}
-    <form [formGroup]="rejestracja" (ngSubmit)="formSubmit()">
-        <mat-form-field>
-            <input matInput placeholder="Login" formControlName="login" [(ngModel)]="uzytkownik.login" name="login">
-        </mat-form-field>
+    <form [formGroup]="rejestracja" (ngSubmit)="formSubmit()">  
         <mat-form-field>
             <input matInput placeholder="Imie" formControlName="imie" [(ngModel)]="uzytkownik.imie" name="imie">
         </mat-form-field>

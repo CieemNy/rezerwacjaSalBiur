@@ -21,7 +21,6 @@ export class RejestracjaComponent implements OnInit {
   constructor(private uzytkownikService:UzytkownikService) { }
 
   public uzytkownik={
-    login:'',
     imie:'',
     nazwisko:'',
     email:'',
