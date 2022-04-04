@@ -1,0 +1,36 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  datasource:
+    password: BialasSQL2115
+    url: jdbc:mysql://mkwk107.cba.pl/domaba69
+    username: domabaSQL
+  jpa:
+    hibernate:
+      ddl-auto: update
+    #      zmienić na update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        format_sql: true
+      show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: projektzetouwm
+    password: Dodoba69@
+
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
