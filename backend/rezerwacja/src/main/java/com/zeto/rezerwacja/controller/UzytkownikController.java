@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/rejestracja")
+@RequestMapping("/uzytkownik")
 @CrossOrigin("*")
 public class UzytkownikController {
 
