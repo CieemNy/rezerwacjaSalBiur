@@ -28,8 +28,6 @@ public class UzytkownikController {
     @PostMapping("/add")
     public Uzytkownik stworzUzytkownik(@RequestBody Uzytkownik uzytkownik) throws Exception {
 
-
-
         Set<UzytkownikRola> role = new HashSet<>();
 
         Rola rola = new Rola();
@@ -92,6 +90,27 @@ public class UzytkownikController {
         uzytkownikRepository.save(updateUzytkownik);
 
         return ResponseEntity.ok(updateUzytkownik);
+    }
+
+    @PostMapping("/editRola/{id}")
+    public ResponseEntity<Uzytkownik> updateRola(@PathVariable long id) {
+        Uzytkownik updateRola = uzytkownikRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Uzytkownik o podanym id nie istnieje! Id: " + id));
+
+        Set<UzytkownikRola> role = new HashSet<>();
+
+        Rola rola1 = new Rola();
+        rola1.setRolaId(2L);
+        rola1.setRolaNazwa("ADMIN");
+
+        UzytkownikRola uzytkownikRola = new UzytkownikRola();
+        uzytkownikRola.setRola(rola1);
+        uzytkownikRola.setUzytkownik(updateRola);
+
+        role.add(uzytkownikRola);
+        updateRola.setUzytkownikRole(role);
+        uzytkownikRepository.save(updateRola);
+        return ResponseEntity.ok(updateRola);
     }
 
 }
