@@ -28,6 +28,8 @@ public class UzytkownikController {
     @PostMapping("/add")
     public Uzytkownik stworzUzytkownik(@RequestBody Uzytkownik uzytkownik) throws Exception {
 
+
+
         Set<UzytkownikRola> role = new HashSet<>();
 
         Rola rola = new Rola();
@@ -36,6 +38,7 @@ public class UzytkownikController {
 
         UzytkownikRola uzytkownikRola = new UzytkownikRola();
         uzytkownikRola.setRola(rola);
+        uzytkownikRola.setUzytkownik(uzytkownik);
 
         role.add(uzytkownikRola);
         return this.uzytkownikService.stworzUzytkownik(uzytkownik, role);

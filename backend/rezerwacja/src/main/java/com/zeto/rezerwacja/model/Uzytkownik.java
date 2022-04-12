@@ -1,6 +1,7 @@
 package com.zeto.rezerwacja.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -26,6 +27,7 @@ public class Uzytkownik implements UserDetails
     private String telefon;
 
     // uzytkownik ma wiele rol
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "uzytkownik")
     @JsonIgnore
     private Set<UzytkownikRola> UzytkownikRole=new HashSet<>();

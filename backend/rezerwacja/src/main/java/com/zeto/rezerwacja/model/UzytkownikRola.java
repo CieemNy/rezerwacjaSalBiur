@@ -1,5 +1,7 @@
 package com.zeto.rezerwacja.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +12,9 @@ public class UzytkownikRola {
     private Long uzytkownikRolaId;
 
     //uzytkownik
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idUzytkownik")
     private Uzytkownik uzytkownik;
 
     @ManyToOne
