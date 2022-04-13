@@ -86,7 +86,7 @@ public class UzytkownikController {
         }
         if (uzytkownik.getHaslo() != null )
         {
-            updateUzytkownik.setHaslo(uzytkownik.getHaslo());
+            updateUzytkownik.setHaslo(this.bCryptPasswordEncoder.encode(uzytkownik.getHaslo()));
         }
         if (uzytkownik.getTelefon() != null )
         {
