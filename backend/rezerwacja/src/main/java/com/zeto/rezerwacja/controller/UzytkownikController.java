@@ -8,6 +8,7 @@ import com.zeto.rezerwacja.repo.UzytkownikRepository;
 import com.zeto.rezerwacja.service.UzytkownikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -23,10 +24,15 @@ public class UzytkownikController {
     private UzytkownikService uzytkownikService;
     @Autowired
     private UzytkownikRepository uzytkownikRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     //tworzenie uzytkownika
     @PostMapping("/add")
     public Uzytkownik stworzUzytkownik(@RequestBody Uzytkownik uzytkownik) throws Exception {
+
+
+        uzytkownik.setHaslo(this.bCryptPasswordEncoder.encode(uzytkownik.getPassword()));
 
         Set<UzytkownikRola> role = new HashSet<>();
 
@@ -97,11 +103,12 @@ public class UzytkownikController {
         Uzytkownik updateRola = uzytkownikRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Uzytkownik o podanym id nie istnieje! Id: " + id));
 
-        Set<UzytkownikRola> role = new HashSet<>();
 
         Rola rola1 = new Rola();
         rola1.setRolaId(2L);
         rola1.setRolaNazwa("ADMIN");
+
+        Set<UzytkownikRola> role = new HashSet<>();
 
         UzytkownikRola uzytkownikRola = new UzytkownikRola();
         uzytkownikRola.setRola(rola1);
@@ -109,6 +116,7 @@ public class UzytkownikController {
 
         role.add(uzytkownikRola);
         updateRola.setUzytkownikRole(role);
+
         uzytkownikRepository.save(updateRola);
         return ResponseEntity.ok(updateRola);
     }
