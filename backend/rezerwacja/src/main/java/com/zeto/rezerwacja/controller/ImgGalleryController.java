@@ -33,9 +33,9 @@ import com.zeto.rezerwacja.service.ImgGalleryService;
 
 
 @Controller
-public class ImgGalleryController {
+public class ImgGalleryController{
 
-    @Value("uploadDir")
+    @Value("${uploadDir}")
     private String uploadFolder;
 
     @Autowired
@@ -46,7 +46,7 @@ public class ImgGalleryController {
     public ImgGalleryController() {
     }
 
-    @GetMapping(value = {"/", "/home"})
+    @GetMapping(value = {"/home"})
     public String addProductPage() {
         return "index";
     }
@@ -95,9 +95,9 @@ public class ImgGalleryController {
         }
     }
 
-    @GetMapping("/image/display/{id}")
+    @GetMapping(value = "/image/display/{id}",produces = "image/png")
     @ResponseBody
-    void showImage(@PathVariable("id") Long id, HttpServletResponse response, Optional<ImgGallery> imageGallery)
+     void showImage(@PathVariable("id") Long id, HttpServletResponse response, Optional<ImgGallery> imageGallery)
             throws ServletException, IOException {
         log.info("Id :: " + id);
         imageGallery = imgGalleryService.getImageById(id);
@@ -108,8 +108,8 @@ public class ImgGalleryController {
 
 
 
-    @GetMapping("/image/display")
-    String show(Model map) {
+    @GetMapping(value = "/image/display",produces = "image/png")
+     String show(Model map) {
         List<ImgGallery> images = imgGalleryService.getAllActiveImages();
         map.addAttribute("images", images);
         return "images";

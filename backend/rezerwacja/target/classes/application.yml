@@ -2,7 +2,13 @@ server:
   error:
     include-message: always
     include-binding-errors: always
-
+  servlet:
+    multipart:
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+      enabled: true
+uploadDir: /resources
 spring:
   datasource:
     password: BialasSQL2115
@@ -23,6 +29,7 @@ spring:
     username: projektzetouwm
     password: Dodoba69@
 
+
     properties:
       mail:
         smtp:
@@ -34,14 +41,4 @@ spring:
           connectiontimeout: 5000
           timeout: 3000
           writetimeout: 5000
-
-  servlet:
-    multipart:
-      file-size-threshold: 2KB
-      max-file-size: 200MB
-      max-request-size: 215MB
-      enabled: true
-
-file:
-  upload-dir: /zdjecia
 
