@@ -1,7 +1,6 @@
 package com.zeto.rezerwacja.model;
 
 import java.util.Arrays;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "image_gallery")
-public class ImgGallery {
+public class ImageGallery {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
@@ -23,6 +20,8 @@ public class ImgGallery {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "description", nullable = false)
+    private String description;
 
     @Column(name = "price",nullable = false, precision = 10, scale = 2)
     private double price;
@@ -31,8 +30,7 @@ public class ImgGallery {
     @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
     private byte[] image;
 
-
-    public ImgGallery() {}
+    public ImageGallery() {}
 
     public Long getId() {
         return id;
@@ -50,7 +48,13 @@ public class ImgGallery {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public double getPrice() {
         return price;
@@ -70,13 +74,9 @@ public class ImgGallery {
 
     @Override
     public String toString() {
-        return "ImgGallery [id=" + id + ", name=" + name + ", price=" + price + ", image=" + Arrays.toString(image)
-                + "]";
+        return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", image="
+                + Arrays.toString(image) + "]";
     }
-
-
-
-
 
 }
 
