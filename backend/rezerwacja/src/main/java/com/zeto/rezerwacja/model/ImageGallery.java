@@ -19,9 +19,6 @@ public class ImageGallery {
     @Column(name = "opis", nullable = false)
     private String description;
 
-    @OneToOne(mappedBy = "idGalerii")
-    private Pomieszczenie pomieszczenie;
-
     @Lob
     @Column(name = "obraz", length = Integer.MAX_VALUE, nullable = true)
     private byte[] image;
