@@ -3,7 +3,7 @@ package com.zeto.rezerwacja.service;
 import com.zeto.rezerwacja.model.Uzytkownik;
 import com.zeto.rezerwacja.model.UzytkownikRola;
 
-import java.util.List;
+
 import java.util.Optional;
 import java.util.Set;
 
