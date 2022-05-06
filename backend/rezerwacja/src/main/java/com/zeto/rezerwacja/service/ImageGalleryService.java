@@ -26,4 +26,7 @@ public class ImageGalleryService {
     public Optional<ImageGallery> getImageById(Long id) {
         return imageGalleryRepository.findById(id);
     }
+    public void deleteImage(Long id){
+        imageGalleryRepository.deleteById(id);
+    }
 }

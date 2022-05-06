@@ -22,18 +22,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.zeto.rezerwacja.model.ImageGallery;
 import com.zeto.rezerwacja.service.ImageGalleryService;
 
 
-@Controller
+@RestController
+@RequestMapping("/image")
+@CrossOrigin("*")
 public class ImageGalleryController {
 
     @Value("${uploadDir}")
@@ -49,10 +47,10 @@ public class ImageGalleryController {
         return "index";
     }
 
-    @PostMapping("/image/saveImage")
-    public @ResponseBody ResponseEntity<?> createProduct(@RequestParam("name") String name,
-                                                         @RequestParam("price") double price, @RequestParam("description") String description, Model model, HttpServletRequest request
-            ,final @RequestParam("image") MultipartFile file) {
+    @PostMapping("/add")
+    public @ResponseBody ResponseEntity<?> createProduct(@RequestParam("nazwa") String name,
+                                                         @RequestParam("opis") String description, Model model, HttpServletRequest request
+            ,final @RequestParam("obraz") MultipartFile file) {
         try {
             //String uploadDirectory = System.getProperty("user.dir") + uploadFolder;
             String uploadDirectory = request.getServletContext().getRealPath(uploadFolder);
@@ -61,18 +59,17 @@ public class ImageGalleryController {
             String filePath = Paths.get(uploadDirectory, fileName).toString();
             log.info("FileName: " + file.getOriginalFilename());
             if (fileName == null || fileName.contains("..")) {
-                model.addAttribute("invalid", "Sorry! Filename contains invalid path sequence \" + fileName");
-                return new ResponseEntity<>("Sorry! Filename contains invalid path sequence " + fileName, HttpStatus.BAD_REQUEST);
+                model.addAttribute("invalid", "Bledna sciezka pliku! \" + fileName");
+                return new ResponseEntity<>("Bledna sciezka pliku " + fileName, HttpStatus.BAD_REQUEST);
             }
             String[] names = name.split(",");
             String[] descriptions = description.split(",");
-            log.info("Name: " + names[0]+" "+filePath);
-            log.info("description: " + descriptions[0]);
-            log.info("price: " + price);
+            log.info("Nazwa: " + names[0]+" "+filePath);
+            log.info("opis: " + descriptions[0]);
             try {
                 File dir = new File(uploadDirectory);
                 if (!dir.exists()) {
-                    log.info("Folder Created");
+                    log.info("Folder utworzony");
                     dir.mkdirs();
                 }
                 // Save the file locally
@@ -87,11 +84,10 @@ public class ImageGalleryController {
             ImageGallery imageGallery = new ImageGallery();
             imageGallery.setName(names[0]);
             imageGallery.setImage(imageData);
-            imageGallery.setPrice(price);
             imageGallery.setDescription(descriptions[0]);
             imageGalleryService.saveImage(imageGallery);
             log.info("HttpStatus===" + new ResponseEntity<>(HttpStatus.OK));
-            return new ResponseEntity<>("Product Saved With File - " + fileName, HttpStatus.OK);
+            return new ResponseEntity<>("Plik zapisany " + fileName, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             log.info("Exception: " + e);
@@ -99,7 +95,7 @@ public class ImageGalleryController {
         }
     }
 
-    @GetMapping("/image/display/{id}")
+    @GetMapping("/find/{id}")
     @ResponseBody
     void showImage(@PathVariable("id") Long id, HttpServletResponse response, Optional<ImageGallery> imageGallery)
             throws ServletException, IOException {
@@ -110,19 +106,18 @@ public class ImageGalleryController {
         response.getOutputStream().close();
     }
 
-    @GetMapping("/image/imageDetails")
+    @GetMapping("/desc/{id}")
     String showProductDetails(@RequestParam("id") Long id, Optional<ImageGallery> imageGallery, Model model) {
         try {
             log.info("Id :: " + id);
             if (id != 0) {
                 imageGallery = imageGalleryService.getImageById(id);
 
-                log.info("products :: " + imageGallery);
+                log.info("zdjecia :: " + imageGallery);
                 if (imageGallery.isPresent()) {
                     model.addAttribute("id", imageGallery.get().getId());
-                    model.addAttribute("description", imageGallery.get().getDescription());
-                    model.addAttribute("name", imageGallery.get().getName());
-                    model.addAttribute("price", imageGallery.get().getPrice());
+                    model.addAttribute("opis", imageGallery.get().getDescription());
+                    model.addAttribute("nazwa", imageGallery.get().getName());
                     return "imagedetails";
                 }
                 return "redirect:/home";
@@ -134,10 +129,14 @@ public class ImageGalleryController {
         }
     }
 
-    @GetMapping("/image/show")
+    @GetMapping("/findall")
     String show(Model map) {
         List<ImageGallery> images = imageGalleryService.getAllActiveImages();
         map.addAttribute("images", images);
         return "images";
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteImage(@PathVariable("id") Long id){
+        imageGalleryService.deleteImage(id);
     }
 }

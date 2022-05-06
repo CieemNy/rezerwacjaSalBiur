@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RezerwacjaRepository extends JpaRepository<Rezerwacja, Long> {
 
+    public Rezerwacja findByIdPomieszczenie(Long idPomieszczenie);
+
+    public Rezerwacja findByIdUzytkownik(Long idUzytkownik);
 }

@@ -74,4 +74,5 @@ public class AuthenticateController
         return ((Uzytkownik)this.uzytkownikDetalisService.loadUserByUsername(principal.getName()));
     }
 
+
 }
