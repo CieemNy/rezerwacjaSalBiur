@@ -15,12 +15,6 @@ public class RezerwacjaServiceImpl implements RezerwacjaService {
     private RezerwacjaRepository rezerwacjaRepository;
 
     @Override
-    public Rezerwacja dodajRezerwacje(Rezerwacja rezerwacja, Date dataStart, Date dataStop) throws Exception {
-        Rezerwacja nowa = rezerwacjaRepository.save(rezerwacja);
-        return nowa;
-    }
-
-    @Override
     public Optional<Rezerwacja> getRezerwacjaPomieszczenie(Long idPomieszczenie) {
         return Optional.ofNullable(this.rezerwacjaRepository.findByIdPomieszczenie(idPomieszczenie));
     }

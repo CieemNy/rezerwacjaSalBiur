@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="Rezerwacja")
@@ -12,26 +13,27 @@ public class Rezerwacja {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="idRezerwacja")
-    private long idRezerwacja;
+    private Long idRezerwacja;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idPomieszczenie", referencedColumnName = "idPomieszczenie")
+    @JoinColumn(name = "idPomieszczenie", referencedColumnName = "idPomieszczenie",columnDefinition = "integer default null")
     private Pomieszczenie idPomieszczenie;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idUzytkownik", referencedColumnName = "idUzytkownik")
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idUzytkownik")
     private Uzytkownik idUzytkownik;
 
     @Column(name="dataStart")
-    private Date dataStart;
+    private LocalDate dataStart;
     @Column(name="dataStop")
-    private Date dataStop;
+    private LocalDate dataStop;
 
-    public long getIdRezerwacja() {
+    public Long getIdRezerwacja() {
         return idRezerwacja;
     }
 
-    public void setIdRezerwacja(long idRezerwacja) {
+    public void setIdRezerwacja(Long idRezerwacja) {
         this.idRezerwacja = idRezerwacja;
     }
 
@@ -51,19 +53,19 @@ public class Rezerwacja {
         this.idUzytkownik = idUzytkownik;
     }
 
-    public Date getDataStart() {
+    public LocalDate getDataStart() {
         return dataStart;
     }
 
-    public void setDataStart(Date dataStart) {
+    public void setDataStart(LocalDate dataStart) {
         this.dataStart = dataStart;
     }
 
-    public Date getDataStop() {
+    public LocalDate getDataStop() {
         return dataStop;
     }
 
-    public void setDataStop(Date dataStop) {
+    public void setDataStop(LocalDate dataStop) {
         this.dataStop = dataStop;
     }
 
@@ -77,4 +79,5 @@ public class Rezerwacja {
                 ", dataStop=" + dataStop +
                 '}';
     }
+    public Rezerwacja(){}
 }

@@ -100,6 +100,8 @@ public class Pomieszczenie {
         this.idGalerii = idGalerii;
     }
 
+    public Pomieszczenie(){}
+
     @Override
     public String toString() {
         return "Pomieszczenie{" +

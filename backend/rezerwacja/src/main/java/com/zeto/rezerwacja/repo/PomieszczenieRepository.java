@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface PomieszczenieRepository extends JpaRepository<Pomieszczenie, Long> {
 
     public Pomieszczenie findByNazwa(String Nazwa);
+
+    public Pomieszczenie findByTyp(String Typ);
 }

@@ -35,6 +35,13 @@ public class PomieszczenieController {
     public Pomieszczenie znajdzPomieszczenie(@PathVariable("nazwa") String nazwa){
         return this.pomieszczenieService.getPomieszczenie(nazwa);
     }
+    //szukanie pomieszczeń po typie
+//    @GetMapping("/findtyp/{typ}")
+//    public List<Pomieszczenie> znajdzTypPomieszczenie(@PathVariable("typ") String typ, Model map){
+//        List<Pomieszczenie> pomieszczenia = pomieszczenieService.getTypPomieszczenie(typ);
+//        map.addAttribute("pomieszczenia",pomieszczenia);
+//        return pomieszczenia;
+//    } TODO:do poprawy findtyp
 
     //szukanie pomieszczeń po id
     @GetMapping("/findid/{id}")
@@ -76,6 +83,9 @@ public class PomieszczenieController {
         }
         if (pomieszczenie.getTyp() != null) {
             updatePomieszczenie.setTyp(pomieszczenie.getTyp());
+        }
+        if (pomieszczenie.getWojewodztwo() != null) {
+            updatePomieszczenie.setWojewodztwo(pomieszczenie.getWojewodztwo());
         }
         pomieszczenieRepository.save(updatePomieszczenie);
 

@@ -28,7 +28,7 @@ public class Uzytkownik implements UserDetails
 
     // uzytkownik ma wiele rol
     @JsonManagedReference
-    @OneToMany(targetEntity = UzytkownikRola.class, cascade = CascadeType.ALL,
+    @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER, mappedBy = "uzytkownik")
     @JsonIgnore
     private Set<UzytkownikRola> UzytkownikRole=new HashSet<>();
