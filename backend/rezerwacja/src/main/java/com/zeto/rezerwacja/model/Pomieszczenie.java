@@ -29,6 +29,17 @@ public class Pomieszczenie {
     @Column(name = "KOD_POCZTOWY")
     private String kodPocztowy;
 
+    @Column(name = "WOJEWODZTWO")
+    private String wojewodztwo;
+
+    public String getWojewodztwo() {
+        return wojewodztwo;
+    }
+
+    public void setWojewodztwo(String wojewodztwo) {
+        this.wojewodztwo = wojewodztwo;
+    }
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idGalerii",columnDefinition = "integer default null", referencedColumnName = "id")
     private ImageGallery idGalerii;

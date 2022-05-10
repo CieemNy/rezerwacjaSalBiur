@@ -7,8 +7,10 @@ import com.zeto.rezerwacja.repo.PomieszczenieRepository;
 import com.zeto.rezerwacja.service.PomieszczenieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -45,6 +47,13 @@ public class PomieszczenieController {
     public void usunPomieszczenie(@PathVariable("id") Long id){
         this.pomieszczenieService.usunPomieszczenie(id);
     }
+    //wszystkie pomieszczenia
+    @GetMapping("/findall")
+    List<Pomieszczenie> show(Model map) {
+        List<Pomieszczenie> pomieszczenia = pomieszczenieService.getAllPomieszczenia();
+        map.addAttribute("pomieszczenia", pomieszczenia);
+        return pomieszczenia;
+    }
 
     //edytuj pomieszczenie
     @PostMapping("/edit/{id}")
@@ -72,5 +81,7 @@ public class PomieszczenieController {
 
         return ResponseEntity.ok(updatePomieszczenie);
 
+
     }
+
 }
