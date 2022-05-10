@@ -111,6 +111,7 @@ public class Pomieszczenie {
                 ", ulica='" + ulica + '\'' +
                 ", miasto='" + miasto + '\'' +
                 ", kodPocztowy='" + kodPocztowy + '\'' +
+                ", wojewodztwo='" + wojewodztwo + '\'' +
                 ", idGalerii=" + idGalerii +
                 '}';
     }
