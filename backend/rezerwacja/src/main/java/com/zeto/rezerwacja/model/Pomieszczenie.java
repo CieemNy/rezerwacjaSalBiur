@@ -32,6 +32,28 @@ public class Pomieszczenie {
     @Column(name = "WOJEWODZTWO")
     private String wojewodztwo;
 
+    @Column(name = "NUMER")
+    private String numer;
+
+    @Column(name = "OPIS")
+    private String opis;
+
+    public String getNumer() {
+        return numer;
+    }
+
+    public void setNumer(String numer) {
+        this.numer = numer;
+    }
+
+    public String getOpis() {
+        return opis;
+    }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
+    }
+
     public String getWojewodztwo() {
         return wojewodztwo;
     }
@@ -112,6 +134,8 @@ public class Pomieszczenie {
                 ", miasto='" + miasto + '\'' +
                 ", kodPocztowy='" + kodPocztowy + '\'' +
                 ", wojewodztwo='" + wojewodztwo + '\'' +
+                ", numer='" + numer + '\'' +
+                ", opis='" + opis + '\'' +
                 ", idGalerii=" + idGalerii +
                 '}';
     }

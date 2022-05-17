@@ -6,7 +6,8 @@ import com.zeto.rezerwacja.service.RezerwacjaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,13 +16,28 @@ public class RezerwacjaServiceImpl implements RezerwacjaService {
     private RezerwacjaRepository rezerwacjaRepository;
 
     @Override
-    public Optional<Rezerwacja> getRezerwacjaPomieszczenie(Long idPomieszczenie) {
-        return Optional.ofNullable(this.rezerwacjaRepository.findByIdPomieszczenie(idPomieszczenie));
+    public List<Rezerwacja> getRezerwacjaPomieszczenie(Long idPomieszczenie) {
+        List<Rezerwacja> rezerwacje = rezerwacjaRepository.findAll();
+        List<Rezerwacja> szukane = new ArrayList<>();
+        for (Rezerwacja rez: rezerwacje){
+            if (rez.getIdPomieszczenie().getIdPomieszczenie() == idPomieszczenie)
+            {
+                szukane.add(rez);
+            }
+        }
+        return szukane;
     }
 
     @Override
-    public Optional<Rezerwacja> getRezerwacjaUzytkownik(Long idUzytkownik) {
-        return Optional.ofNullable(this.rezerwacjaRepository.findByIdUzytkownik(idUzytkownik));
+    public List<Rezerwacja> getRezerwacjaUzytkownik(Long idUzytkownik) {
+        List<Rezerwacja> rezerwacje = rezerwacjaRepository.findAll();
+        List<Rezerwacja> szukane = new ArrayList<>();
+        for (Rezerwacja rez : rezerwacje) {
+            if (rez.getIdUzytkownik().getIdUzytkownik() == idUzytkownik) {
+                szukane.add(rez);
+            }
+        }
+        return szukane;
     }
 
     @Override
@@ -32,5 +48,10 @@ public class RezerwacjaServiceImpl implements RezerwacjaService {
     @Override
     public void usunRezerwacja(Long idRezerwacja) {
         this.rezerwacjaRepository.deleteById(idRezerwacja);
+    }
+
+    @Override
+    public List<Rezerwacja> getAllRezerwacja() {
+        return rezerwacjaRepository.findAll();
     }
 }

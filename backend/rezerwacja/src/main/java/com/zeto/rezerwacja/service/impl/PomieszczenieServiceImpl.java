@@ -1,6 +1,7 @@
 package com.zeto.rezerwacja.service.impl;
 
 import com.zeto.rezerwacja.model.Pomieszczenie;
+import com.zeto.rezerwacja.model.Rezerwacja;
 import com.zeto.rezerwacja.model.UzytkownikRola;
 import com.zeto.rezerwacja.repo.PomieszczenieRepository;
 import com.zeto.rezerwacja.service.PomieszczenieService;
@@ -23,20 +24,27 @@ public class PomieszczenieServiceImpl implements PomieszczenieService {
         return nowe;
     }
     @Override
-    public Pomieszczenie getPomieszczenie(String nazwa){
-        return this.pomieszczenieRepository.findByNazwa(nazwa);
+    public List<Pomieszczenie> getPomieszczenie(String nazwa){
+        List<Pomieszczenie> pomieszczenia = pomieszczenieRepository.findAll();
+        List<Pomieszczenie> szukane = new ArrayList<>();
+        for (Pomieszczenie pom : pomieszczenia) {
+            if (pom.getNazwa() == nazwa) {
+                szukane.add(pom);
+            }
+        }
+        return szukane;
     }
 
     @Override
     public List<Pomieszczenie> getTypPomieszczenie(String typ) {
-        List<Pomieszczenie> lista = new ArrayList<>();
-        for(Pomieszczenie pom: pomieszczenieRepository.findAll()){
-            if(pom.getTyp() == typ)
-            {
-                lista.add(pom);
+        List<Pomieszczenie> pomieszczenia = pomieszczenieRepository.findAll();
+        List<Pomieszczenie> szukane = new ArrayList<>();
+        for (Pomieszczenie pom : pomieszczenia) {
+            if (pom.getTyp() == typ) {
+                szukane.add(pom);
             }
         }
-        return lista;
+        return szukane;
     }
 
     @Override

@@ -16,7 +16,7 @@ public class Rezerwacja {
     private Long idRezerwacja;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idPomieszczenie", referencedColumnName = "idPomieszczenie",columnDefinition = "integer default null")
+    @JoinColumn(name = "idPomieszczenie", referencedColumnName = "idPomieszczenie")
     private Pomieszczenie idPomieszczenie;
 
     @JsonBackReference

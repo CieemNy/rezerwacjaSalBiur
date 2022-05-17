@@ -13,7 +13,7 @@ public interface PomieszczenieService {
 
     public Pomieszczenie dodajPomieszczenie(Pomieszczenie pomieszczenie) throws Exception;
 
-    public Pomieszczenie getPomieszczenie(String nazwa);
+    public List<Pomieszczenie> getPomieszczenie(String nazwa);
 
     public List<Pomieszczenie> getTypPomieszczenie(String typ);
 
