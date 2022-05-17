@@ -28,7 +28,7 @@ public class PomieszczenieServiceImpl implements PomieszczenieService {
         List<Pomieszczenie> pomieszczenia = pomieszczenieRepository.findAll();
         List<Pomieszczenie> szukane = new ArrayList<>();
         for (Pomieszczenie pom : pomieszczenia) {
-            if (pom.getNazwa() == nazwa) {
+            if (pom.getNazwa().matches(nazwa)) {
                 szukane.add(pom);
             }
         }
@@ -40,7 +40,7 @@ public class PomieszczenieServiceImpl implements PomieszczenieService {
         List<Pomieszczenie> pomieszczenia = pomieszczenieRepository.findAll();
         List<Pomieszczenie> szukane = new ArrayList<>();
         for (Pomieszczenie pom : pomieszczenia) {
-            if (pom.getTyp() == typ) {
+            if (pom.getTyp().matches(typ)) {
                 szukane.add(pom);
             }
         }

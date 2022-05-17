@@ -33,12 +33,12 @@ public class PomieszczenieController {
     //szukanie pomieszczeń po nazwie
     @GetMapping("/find/{nazwa}")
     public List<Pomieszczenie> znajdzPomieszczenie(@PathVariable("nazwa") String nazwa){
-        return this.pomieszczenieService.getPomieszczenie(nazwa);
+        return pomieszczenieService.getPomieszczenie(nazwa);
     }
     //szukanie pomieszczeń po typie
     @GetMapping("/findtyp/{typ}")
     public List<Pomieszczenie> znajdzTypPomieszczenie(@PathVariable("typ") String typ){
-        return this.pomieszczenieService.getTypPomieszczenie(typ);
+        return pomieszczenieService.getTypPomieszczenie(typ);
     }
 
     //szukanie pomieszczeń po id
