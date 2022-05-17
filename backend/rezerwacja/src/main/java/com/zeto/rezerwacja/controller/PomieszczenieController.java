@@ -2,14 +2,17 @@ package com.zeto.rezerwacja.controller;
 
 
 import com.zeto.rezerwacja.exception.ResourceNotFoundException;
+import com.zeto.rezerwacja.model.ImageGallery;
 import com.zeto.rezerwacja.model.Pomieszczenie;
 import com.zeto.rezerwacja.repo.PomieszczenieRepository;
+import com.zeto.rezerwacja.service.ImageGalleryService;
 import com.zeto.rezerwacja.service.PomieszczenieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +25,8 @@ public class PomieszczenieController {
     private PomieszczenieService pomieszczenieService;
     @Autowired
     private PomieszczenieRepository pomieszczenieRepository;
+    @Autowired
+    private ImageGalleryService imageGalleryService;
 
     //dodawanie pomieszczeń
     @PostMapping("/add")
@@ -63,7 +68,7 @@ public class PomieszczenieController {
     //edytuj pomieszczenie
     @PostMapping("/edit/{id}")
     public ResponseEntity<Pomieszczenie> updatePomieszczenie(@PathVariable long id,
-                                                             @RequestBody Pomieszczenie pomieszczenie){
+                                                             @RequestBody Pomieszczenie pomieszczenie, String idGalerii){
         Pomieszczenie updatePomieszczenie = pomieszczenieRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pomieszczenie o podanym id nie istnieje! Id:" + id));
 
@@ -91,11 +96,32 @@ public class PomieszczenieController {
         if (pomieszczenie.getWojewodztwo() != null) {
             updatePomieszczenie.setWojewodztwo(pomieszczenie.getWojewodztwo());
         }
+        if (idGalerii != null) {
+            Long idGaleria = Long.valueOf(idGalerii);
+            List<ImageGallery> galerie = imageGalleryService.getAllActiveImages();
+            ImageGallery galeria = new ImageGallery();
+            for(ImageGallery img: galerie) {
+                if (img.getId() == idGaleria) {
+                    galeria = img;
+                }
+            }
+            updatePomieszczenie.setIdGalerii(galeria);
+        }
         pomieszczenieRepository.save(updatePomieszczenie);
-
         return ResponseEntity.ok(updatePomieszczenie);
-
-
+    }
+    @GetMapping("/desc/{id}")
+    public String wlasciwosciPomieszczenie(@PathVariable("id") Long id)
+    {
+        List<Pomieszczenie> pomieszczenia = pomieszczenieService.getAllPomieszczenia();
+        String current = null;
+        List<Pomieszczenie> wlasciwosci = new ArrayList<>();
+        for(Pomieszczenie pom: pomieszczenia)
+            if(pom.getIdPomieszczenie() == id)
+            {
+                current=pom.toString();
+            }
+        return current;
     }
 
 }
