@@ -48,8 +48,8 @@ public class PomieszczenieController {
 
     //szukanie pomieszczeń po id
     @GetMapping("/findid/{id}")
-    public Optional<Pomieszczenie> znajdzPomieszczenieId(@PathVariable("id") Long id){
-        return this.pomieszczenieService.findPomieszczenie(id);
+    public Pomieszczenie znajdzPomieszczenieId(@PathVariable("id") Long id){
+        return pomieszczenieService.findPomieszczenie(id);
     }
 
     //usuwanie pomieszczenia

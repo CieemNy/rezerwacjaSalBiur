@@ -73,7 +73,7 @@ public class RezerwacjaController {
 
     //szukanie rezerwacji po jej id
     @GetMapping("/findid/{id}")
-    public Optional<Rezerwacja> znajdzRezerwacjaId(@PathVariable("id") Long id){
+    public Rezerwacja znajdzRezerwacjaId(@PathVariable("id") Long id){
         return this.rezerwacjaService.getRezerwacja(id);
     }
     //szukanie rezerwacji po id pomieszczenia

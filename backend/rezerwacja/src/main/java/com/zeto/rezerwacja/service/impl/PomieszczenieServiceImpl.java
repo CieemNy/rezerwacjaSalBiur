@@ -48,8 +48,17 @@ public class PomieszczenieServiceImpl implements PomieszczenieService {
     }
 
     @Override
-    public Optional<Pomieszczenie> findPomieszczenie(Long idPomieszczenie){
-        return this.pomieszczenieRepository.findById(idPomieszczenie);
+    public Pomieszczenie findPomieszczenie(Long idPomieszczenie){
+        List<Pomieszczenie> pomieszczenia = pomieszczenieRepository.findAll();
+        Pomieszczenie szukane = null;
+        for(Pomieszczenie pom: pomieszczenia)
+        {
+            if(pom.getIdPomieszczenie()==idPomieszczenie)
+            {
+                szukane = pom;
+            }
+        }
+        return szukane;
     }
     @Override
     public void usunPomieszczenie(Long idPomieszczenie){

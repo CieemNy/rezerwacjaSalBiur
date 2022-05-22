@@ -13,7 +13,7 @@ public interface RezerwacjaService {
 
     public List<Rezerwacja> getRezerwacjaUzytkownik(Long idUzytkownik);
 
-    public Optional<Rezerwacja> getRezerwacja(Long idRezerwacja);
+    public Rezerwacja getRezerwacja(Long idRezerwacja);
 
     public void usunRezerwacja(Long idRezerwacja);
 

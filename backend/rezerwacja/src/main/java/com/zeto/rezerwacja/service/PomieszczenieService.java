@@ -17,7 +17,7 @@ public interface PomieszczenieService {
 
     public List<Pomieszczenie> getTypPomieszczenie(String typ);
 
-    public Optional<Pomieszczenie> findPomieszczenie(Long idPomieszczenie);
+    public Pomieszczenie findPomieszczenie(Long idPomieszczenie);
 
     public void usunPomieszczenie(Long idPomieszczenie);
 

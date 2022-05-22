@@ -1,5 +1,6 @@
 package com.zeto.rezerwacja.service.impl;
 
+import com.zeto.rezerwacja.model.Pomieszczenie;
 import com.zeto.rezerwacja.model.Rezerwacja;
 import com.zeto.rezerwacja.repo.RezerwacjaRepository;
 import com.zeto.rezerwacja.service.RezerwacjaService;
@@ -41,8 +42,17 @@ public class RezerwacjaServiceImpl implements RezerwacjaService {
     }
 
     @Override
-    public Optional<Rezerwacja> getRezerwacja(Long idRezerwacja) {
-        return this.rezerwacjaRepository.findById(idRezerwacja);
+    public Rezerwacja getRezerwacja(Long idRezerwacja) {
+        List<Rezerwacja> rezerwacje = rezerwacjaRepository.findAll();
+        Rezerwacja szukane = null;
+        for(Rezerwacja rez: rezerwacje)
+        {
+            if(rez.getIdRezerwacja()==idRezerwacja)
+            {
+                szukane = rez;
+            }
+        }
+        return szukane;
     }
 
     @Override
