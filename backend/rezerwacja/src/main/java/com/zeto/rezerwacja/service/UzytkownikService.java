@@ -2,11 +2,13 @@ package com.zeto.rezerwacja.service;
 
 import com.zeto.rezerwacja.model.Uzytkownik;
 import com.zeto.rezerwacja.model.UzytkownikRola;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+@Service
 public interface UzytkownikService {
 
     //tworzenie uzytkownika

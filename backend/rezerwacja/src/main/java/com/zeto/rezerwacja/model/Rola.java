@@ -1,5 +1,8 @@
 package com.zeto.rezerwacja.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +15,7 @@ public class Rola {
     private Long rolaId;
     private String rolaNazwa;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "rola")
+    @OneToMany(targetEntity = UzytkownikRola.class,cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "rola")
     private Set<UzytkownikRola> UzytkownikRole =new HashSet<>();
 
     public Rola() {

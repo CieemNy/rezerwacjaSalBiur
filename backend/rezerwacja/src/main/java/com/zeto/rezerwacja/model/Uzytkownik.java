@@ -1,6 +1,9 @@
 package com.zeto.rezerwacja.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -18,6 +21,7 @@ public class Uzytkownik implements UserDetails
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
+
     private Long idUzytkownik;
     private String imie;
     private String nazwisko;
@@ -26,7 +30,8 @@ public class Uzytkownik implements UserDetails
     private String telefon;
 
     // uzytkownik ma wiele rol
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "uzytkownik")
+    @JsonManagedReference
+    @OneToMany(targetEntity = UzytkownikRola.class,cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "uzytkownik")
     @JsonIgnore
     private Set<UzytkownikRola> UzytkownikRole=new HashSet<>();
 
@@ -110,7 +115,7 @@ public class Uzytkownik implements UserDetails
             set.add(new Authority(uzytkownikRola.getRola().getRolaNazwa()));
         });
 
-        return null;
+        return set;
     }
 
     @Override
