@@ -1,5 +1,6 @@
 package com.zeto.rezerwacja.model;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.stereotype.Component;
@@ -65,6 +66,34 @@ public class Pomieszczenie {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idGalerii",columnDefinition = "integer default null", referencedColumnName = "id")
     private ImageGallery idGalerii;
+=======
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="POMIESZCZENIE")
+public class Pomieszczenie {
+    @Id
+    @Column(name = "POMIESZCZENIE_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long idPomieszczenie;
+    @Column(name = "NAZWA")
+    private String nazwa;
+    @Column(name = "TYP_POMIESZCZENIA")
+    private String typ;
+    @Column(name = "ULICA")
+    private String ulica;
+    @Column(name = "MIASTO")
+    private String miasto;
+    @Column(name = "KOD_POCZTOWY")
+    private String kodPocztowy;
+    @Column(name = "ID_GALERII")
+    private String idGalerii;
+>>>>>>> main
 
     public long getIdPomieszczenie() {
         return idPomieszczenie;
@@ -114,6 +143,7 @@ public class Pomieszczenie {
         this.kodPocztowy = kodPocztowy;
     }
 
+<<<<<<< HEAD
     public ImageGallery getIdGalerii() {
         return idGalerii;
     }
@@ -139,4 +169,13 @@ public class Pomieszczenie {
                 ", idGalerii=" + idGalerii +
                 '}';
     }
+=======
+    public String getIdGalerii() {
+        return idGalerii;
+    }
+
+    public void setIdGalerii(String idGalerii) {
+        this.idGalerii = idGalerii;
+    }
+>>>>>>> main
 }
