@@ -1,5 +1,72 @@
 package com.zeto.rezerwacja.model;
 
+<<<<<<< HEAD
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.stereotype.Component;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="pomieszczenie")
+public class Pomieszczenie {
+    @Id
+    @Column(name = "idPomieszczenie")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idPomieszczenie;
+
+    @Column(name = "NAZWA")
+    private String nazwa;
+
+    @Column(name = "TYP_POMIESZCZENIA")
+    private String typ;
+
+    @Column(name = "ULICA")
+    private String ulica;
+
+    @Column(name = "MIASTO")
+    private String miasto;
+
+    @Column(name = "KOD_POCZTOWY")
+    private String kodPocztowy;
+
+    @Column(name = "WOJEWODZTWO")
+    private String wojewodztwo;
+
+    @Column(name = "NUMER")
+    private String numer;
+
+    @Column(name = "OPIS")
+    private String opis;
+
+    public String getNumer() {
+        return numer;
+    }
+
+    public void setNumer(String numer) {
+        this.numer = numer;
+    }
+
+    public String getOpis() {
+        return opis;
+    }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
+    }
+
+    public String getWojewodztwo() {
+        return wojewodztwo;
+    }
+
+    public void setWojewodztwo(String wojewodztwo) {
+        this.wojewodztwo = wojewodztwo;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idGalerii",columnDefinition = "integer default null", referencedColumnName = "id")
+    private ImageGallery idGalerii;
+=======
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +93,7 @@ public class Pomieszczenie {
     private String kodPocztowy;
     @Column(name = "ID_GALERII")
     private String idGalerii;
+>>>>>>> main
 
     public long getIdPomieszczenie() {
         return idPomieszczenie;
@@ -75,6 +143,33 @@ public class Pomieszczenie {
         this.kodPocztowy = kodPocztowy;
     }
 
+<<<<<<< HEAD
+    public ImageGallery getIdGalerii() {
+        return idGalerii;
+    }
+
+    public void setIdGalerii(ImageGallery idGalerii) {
+        this.idGalerii = idGalerii;
+    }
+
+    public Pomieszczenie(){}
+
+    @Override
+    public String toString() {
+        return "Pomieszczenie{" +
+                "idPomieszczenie=" + idPomieszczenie +
+                ", nazwa='" + nazwa + '\'' +
+                ", typ='" + typ + '\'' +
+                ", ulica='" + ulica + '\'' +
+                ", miasto='" + miasto + '\'' +
+                ", kodPocztowy='" + kodPocztowy + '\'' +
+                ", wojewodztwo='" + wojewodztwo + '\'' +
+                ", numer='" + numer + '\'' +
+                ", opis='" + opis + '\'' +
+                ", idGalerii=" + idGalerii +
+                '}';
+    }
+=======
     public String getIdGalerii() {
         return idGalerii;
     }
@@ -82,4 +177,5 @@ public class Pomieszczenie {
     public void setIdGalerii(String idGalerii) {
         this.idGalerii = idGalerii;
     }
+>>>>>>> main
 }

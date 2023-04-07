@@ -1,33 +1,26 @@
 package com.zeto.rezerwacja.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Arrays;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "image_gallery")
+@Table(name = "galeria")
 public class ImageGallery {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "nazwa", nullable = false)
     private String name;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "opis", nullable = false)
     private String description;
 
-    @Column(name = "price",nullable = false, precision = 10, scale = 2)
-    private double price;
-
     @Lob
-    @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
+    @Column(name = "obraz", length = Integer.MAX_VALUE, nullable = true)
     private byte[] image;
 
     public ImageGallery() {}
@@ -56,14 +49,6 @@ public class ImageGallery {
         this.description = description;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public byte[] getImage() {
         return image;
     }
@@ -74,10 +59,13 @@ public class ImageGallery {
 
     @Override
     public String toString() {
-        return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", image="
-                + Arrays.toString(image) + "]";
+        return "ImageGallery{" +
+                "id=" + id +
+                ", nazwa='" + name + '\'' +
+                ", opis='" + description + '\'' +
+                ", obraz=" + Arrays.toString(image) +
+                '}';
     }
-
 }
 
 
