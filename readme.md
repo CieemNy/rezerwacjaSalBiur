@@ -10,5 +10,3 @@
 ### Dominik Grzeszczyk
 ### Dominik Kołakowski
 ### Bartosz Gryciuk
-
-![alt text](https://sm.ign.com/t/ign_pl/screenshot/default/geraltok_b4m7.1280.jpg)
